@@ -1,5 +1,6 @@
 import RelatedTools from "./RelatedTools";
 import ToolFAQ from "./ToolFAQ";
+import WebincoderCard from "./WebincoderCard";
 import { getRelatedTools, SITE_URL, toolBySlug } from "@/lib/tools";
 
 // Builds the page metadata for a tool from the shared tools list.
@@ -41,6 +42,7 @@ export default function ToolPageShell({ slug, description, faqs = [], children }
       <div className="mx-auto w-full max-w-5xl pb-10">
         <RelatedTools tools={getRelatedTools(slug)} />
         <ToolFAQ faqs={faqs} />
+        <WebincoderCard placement={`tool-${slug}`} />
       </div>
 
       {faqJsonLd && (

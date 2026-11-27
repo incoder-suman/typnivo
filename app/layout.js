@@ -3,6 +3,21 @@ import "./globals.css";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import { SITE_URL } from "@/lib/tools";
+import { WEBINCODER_URL } from "@/lib/company";
+
+// Tells search engines that Typnivo is a website published by Webincoder.
+const siteJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "Typnivo",
+  url: SITE_URL,
+  description: "Free text and social tools: fancy fonts, symbols, bios, captions and usernames.",
+  publisher: {
+    "@type": "Organization",
+    name: "Webincoder",
+    url: WEBINCODER_URL,
+  },
+};
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -22,6 +37,8 @@ export const metadata = {
     url: SITE_URL,
   },
   title: "Typnivo — Free Text & Social Tools",
+  authors: [{ name: "Webincoder", url: WEBINCODER_URL }],
+  publisher: "Webincoder",
   description: "Create stylish text, fonts, symbols, bios, captions and usernames instantly with free online tools from Typnivo.",
 };
 
@@ -42,6 +59,10 @@ export default function RootLayout({ children }) {
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(siteJsonLd) }}
+        />
       </body>
     </html>
   );
